@@ -5,7 +5,7 @@
 # Main Environment Setup Script for Ubuntu 22.04
 # ============================================================================
 # Purpose: Orchestrates the installation of development tools
-# Installs: Chromium Browser, Cursor, and VS Code
+# Installs: DNS Configuration, Chromium Browser, Cursor, and VS Code
 # 
 # ARCHITECTURE SUPPORT:
 # This script supports both x86_64 and ARM64 (Apple Silicon via UTM) architectures.
@@ -133,28 +133,40 @@ run_module "01-system-update.sh"
 run_module "02-prerequisites.sh"
 
 # ============================================================================
-# STEP 3: Install Chromium Browser
+# STEP 3: Configure DNS
+# ============================================================================
+# Configure reliable DNS servers for the system
+run_module "03-configure-dns.sh"
+
+# ============================================================================
+# STEP 4: Install Chromium Browser
 # ============================================================================
 # Install the Chromium web browser
-run_module "03-install-chromium.sh"
+run_module "04-install-chromium.sh"
 
 # ============================================================================
-# STEP 4: Install VS Code
+# STEP 5: Install VS Code
 # ============================================================================
 # Install Visual Studio Code editor
-run_module "04-install-vscode.sh"
+run_module "05-install-vscode.sh"
 
 # ============================================================================
-# STEP 5: Install Cursor
+# STEP 6: Install Cursor
 # ============================================================================
 # Install Cursor AI code editor
-run_module "05-install-cursor.sh"
+run_module "06-install-cursor.sh"
 
 # ============================================================================
-# STEP 6: Final System Update
+# STEP 7: Install Packages
+# ============================================================================
+# Install packages for the system
+run_module "07-install-packages.sh"
+
+# ============================================================================
+# STEP 8: Final System Update
 # ============================================================================
 # Run a final system update to ensure everything is current
-run_module "06-final-update.sh"
+run_module "08-final-update.sh"
 
 # ============================================================================
 # Installation Complete - Display Summary
