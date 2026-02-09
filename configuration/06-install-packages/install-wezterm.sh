@@ -1,13 +1,8 @@
 #!/bin/bash
 set -e
 
-# Install UV
-if ! command -v uv &> /dev/null; then
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
+echo "Installing WezTerm..."
 
-# Install WezTerm
 if ! command -v wezterm &> /dev/null; then
     sudo apt-get update
     sudo apt-get install -y wget gpg apt-transport-https
@@ -15,6 +10,9 @@ if ! command -v wezterm &> /dev/null; then
     echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
     sudo apt-get update
     sudo apt-get install -y wezterm
+    echo "✓ WezTerm installed successfully"
+else
+    echo "WezTerm is already installed. Skipping..."
 fi
 
-echo "Installation complete"
+add_to_favorites "org.wezfurlong.wezterm.desktop"

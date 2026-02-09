@@ -8,7 +8,7 @@
 
 set -e  # Exit on any error
 
-echo "[1/6] Updating package list..."
+echo "[1/7] Updating package list..."
 
 # apt update downloads package information from all configured sources
 # This refreshes the local database of available packages and their versions

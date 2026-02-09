@@ -8,7 +8,7 @@
 
 set -e  # Exit on any error
 
-echo "[6/6] Running final system update..."
+echo "[7/7] Running final system update..."
 
 # apt update refreshes the package list (in case repos were added)
 # && chains commands - only runs the second if the first succeeds

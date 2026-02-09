@@ -83,6 +83,12 @@ command_exists() {
 # Export the function so child scripts can use it
 export -f command_exists
 
+# Source and export dock favorites helpers
+source "$SCRIPT_DIR/helpers/add-to-favorites.sh"
+source "$SCRIPT_DIR/helpers/wipe-favorites.sh"
+export -f add_to_favorites
+export -f wipe_favorites
+
 # ============================================================================
 # UTILITY FUNCTION: Run installation module
 # ============================================================================
@@ -139,34 +145,28 @@ run_module "02-prerequisites.sh"
 run_module "03-configure-dns.sh"
 
 # ============================================================================
-# STEP 4: Install Chromium Browser
+# STEP 4: Pre-install Configurations
 # ============================================================================
-# Install the Chromium web browser
-run_module "04-install-chromium.sh"
+# Run pre-install configurations (wipe dock favorites, etc.)
+run_module "04-preinstall-configurations.sh"
 
 # ============================================================================
-# STEP 5: Install VS Code
+# STEP 5: Install Applications
 # ============================================================================
-# Install Visual Studio Code editor
-run_module "05-install-vscode.sh"
+# Install Chromium Browser, VS Code, and Cursor
+run_module "05-install-applications/index.sh"
 
 # ============================================================================
-# STEP 6: Install Cursor
+# STEP 6: Install Packages
 # ============================================================================
-# Install Cursor AI code editor
-run_module "06-install-cursor.sh"
+# Install UV and WezTerm
+run_module "06-install-packages/index.sh"
 
 # ============================================================================
-# STEP 7: Install Packages
-# ============================================================================
-# Install packages for the system
-run_module "07-install-packages.sh"
-
-# ============================================================================
-# STEP 8: Final System Update
+# STEP 7: Final System Update
 # ============================================================================
 # Run a final system update to ensure everything is current
-run_module "08-final-update.sh"
+run_module "07-final-update.sh"
 
 # ============================================================================
 # Installation Complete - Display Summary

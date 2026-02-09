@@ -12,12 +12,7 @@
 
 set -e  # Exit on any error
 
-echo "[6/7] Installing Cursor..."
-
-# Helper function to check if a command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
+echo "Installing Cursor..."
 
 # Check if Cursor is already installed by looking for the 'cursor' command
 if command_exists cursor; then
@@ -138,3 +133,5 @@ EOF
     echo "Note: If icon doesn't appear immediately, log out and back in, or run:"
     echo "  gtk-update-icon-cache -f -t ~/.local/share/icons/hicolor"
 fi
+
+add_to_favorites "cursor.desktop"
