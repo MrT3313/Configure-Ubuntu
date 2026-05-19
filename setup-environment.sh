@@ -21,6 +21,46 @@
 set -e
 
 # ============================================================================
+# ARGUMENT PARSING
+# ============================================================================
+# PRESERVE_FAVORITES=1 skips the GNOME dock favorites wipe in step 4 so
+# manually-pinned apps survive a re-run. Default is to wipe.
+PRESERVE_FAVORITES=0
+
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") [--preserve-favorites]
+
+Options:
+  --preserve-favorites   Do not wipe the GNOME dock favorites before installing.
+                         By default, the dock favorites list is cleared and only
+                         the apps installed by this script are re-added.
+  -h, --help             Show this help message and exit.
+EOF
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --preserve-favorites)
+            PRESERVE_FAVORITES=1
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "❌ Unknown argument: $1" >&2
+            echo "" >&2
+            usage >&2
+            exit 1
+            ;;
+    esac
+done
+
+export PRESERVE_FAVORITES
+
+# ============================================================================
 # CONFIGURATION
 # ============================================================================
 # Define the directory where individual installation scripts are stored
@@ -32,6 +72,11 @@ CONFIG_DIR="$SCRIPT_DIR/configuration"
 echo "======================================="
 echo "Environment Setup Script"
 echo "======================================="
+if [ "$PRESERVE_FAVORITES" = "1" ]; then
+    echo "Favorites mode: preserve (existing dock favorites will be kept)"
+else
+    echo "Favorites mode: wipe (default — existing dock favorites will be cleared)"
+fi
 echo ""
 
 # ============================================================================
