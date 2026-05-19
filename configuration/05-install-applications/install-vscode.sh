@@ -9,7 +9,7 @@
 
 set -e  # Exit on any error
 
-echo "[4/6] Installing VS Code..."
+echo "Installing VS Code..."
 
 # Check if VS Code is already installed by looking for the 'code' command
 if command_exists code; then
@@ -50,3 +50,5 @@ else
     
     echo "✓ VS Code installed successfully"
 fi
+
+add_to_favorites "code.desktop"

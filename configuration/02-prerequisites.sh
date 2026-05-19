@@ -8,7 +8,7 @@
 
 set -e  # Exit on any error
 
-echo "[2/6] Installing prerequisites..."
+echo "[2/7] Installing prerequisites..."
 
 # Install necessary utilities:
 # - wget: command-line tool for downloading files from the internet

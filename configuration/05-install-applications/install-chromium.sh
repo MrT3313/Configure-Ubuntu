@@ -9,7 +9,7 @@
 
 set -e  # Exit on any error
 
-echo "[3/6] Installing Chromium Browser..."
+echo "Installing Chromium Browser..."
 
 # Check if Chromium is already installed to avoid redundant installation
 # We check for both "chromium-browser" and "chromium" commands
@@ -23,3 +23,5 @@ else
     sudo apt install -y chromium-browser
     echo "✓ Chromium Browser installed successfully"
 fi
+
+add_to_favorites "chromium-browser.desktop"
